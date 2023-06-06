@@ -91,7 +91,7 @@ void checkMovement() {
     if (millis() - lastMovementTime >= WATCHDOG_TIMEOUT) {
       // Prošlo je više od 10 sekundi bez pokreta
       Serial.println("Isključite peglu!");
-      // Dodajte ovde kod za isključivanje pegle
+      //Ovde cemo dodati kod za iskljucivanje pegle(pin-a)
     }
   }
 }
