@@ -50,13 +50,13 @@ void checkMovement() {
 }
 
 bool isMovementDetected() {
- 
-  if (accelerometer_x<-4000){  //ovo zavisi od toga kako postavimo akcelerometar u pegli
+  int16_t threshold =25000;  // Prag vrednosti za detekciju pokreta (može se prilagoditi)
 
+  int16_t acceleration = abs(accelerometer_x) + abs(accelerometer_y) + abs(accelerometer_z);
+  
+  if (acceleration > threshold) {
     return true;
-  }
-  else{
-
+  } else {
     return false;
   }
 }
