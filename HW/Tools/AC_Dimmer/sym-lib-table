@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name "AC_Dimmer-cache")(type "Legacy")(uri "${KIPRJMOD}/AC_Dimmer-cache.lib")(options "")(descr ""))
-)
