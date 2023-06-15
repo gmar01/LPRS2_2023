@@ -4,7 +4,7 @@ const int MPU_addr = 0x68;  // Adresa akcelerometra
 
 int16_t accelerometer_x, accelerometer_y, accelerometer_z;
 unsigned long lastMovementTime = 0;
-const unsigned long WATCHDOG_TIMEOUT = 10000;  // Vreme u milisekundama (30 sekundi)
+const unsigned long WATCHDOG_TIMEOUT = 10000;  // Vreme u milisekundama (10 sekundi)
 
 void setup() {
   Wire.begin();        // Inicijalizacija I2C komunikacije
@@ -16,7 +16,7 @@ void setup() {
 }
 
 void loop() {
-  checkMovement();  // Provjera pokreta
+  checkMovement();  // Provera pokreta
 
   Wire.beginTransmission(MPU_addr); // Slanje adrese uređaja
   Wire.write(0x3B);   // Početni registar za čitanje podataka akcelerometra
@@ -34,7 +34,7 @@ void loop() {
   Serial.print(" Z: ");
   Serial.println(accelerometer_z);
 
-  delay(250);  // Pauza između očitanja podataka
+  delay(250);  // Pauza između očitavanja podataka
 }
 
 void checkMovement() {
@@ -44,13 +44,13 @@ void checkMovement() {
     if (millis() - lastMovementTime >= WATCHDOG_TIMEOUT) {
       // Prošlo je više od 10 sekundi bez pokreta
       Serial.println("Isključite peglu!");
-      //ovde cemo dodati kod za iskljucivanje pegle
+      // Ovde ćemo dodati kod za isključivanje pegle
     }
   }
 }
 
 bool isMovementDetected() {
-  int16_t threshold =25000;  // Prag vrednosti za detekciju pokreta (može se prilagoditi)
+  int16_t threshold = 25000;  // Prag vrednosti za detekciju pokreta (može se prilagoditi)
 
   int16_t acceleration = abs(accelerometer_x) + abs(accelerometer_y) + abs(accelerometer_z);
   
