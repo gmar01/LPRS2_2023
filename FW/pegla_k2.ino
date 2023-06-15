@@ -4,7 +4,7 @@
 
 int16_t accelerometer_x, accelerometer_y, accelerometer_z;
 unsigned long lastMovementTime = 0;
-const unsigned long WATCHDOG_TIMEOUT = 10000;  // Vreme u milisekundama (30 sekundi)
+const unsigned long WATCHDOG_TIMEOUT = 10000;  // Vreme u milisekundama (10 sekundi)
 
 void twi_init() {
   // Inicijalizacija TWI (I2C) komunikacije
@@ -55,7 +55,7 @@ void setup() {
 
   twi_init();  // Inicijalizacija I2C komunikacije
   twi_start(MPU_addr<<1);  // Slanje adrese uređaja
-  twi_write(0x6B);   // Pisanje na registar za napajanje (Power Management)
+  twi_write(0x6B);   // Pisanje na registar za napajanje
   twi_write(0);      // Omogućavanje rada akcelerometra
   twi_stop();
 
@@ -91,7 +91,7 @@ void checkMovement() {
     if (millis() - lastMovementTime >= WATCHDOG_TIMEOUT) {
       // Prošlo je više od 10 sekundi bez pokreta
       Serial.println("Isključite peglu!");
-      //Ovde cemo dodati kod za iskljucivanje pegle(pin-a)
+      // Ovde cemo dodati kod za isključivanje pegle(pin-a)
     }
   }
 }
